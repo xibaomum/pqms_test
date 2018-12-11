@@ -4,36 +4,44 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class pqms_test_demo {
 
 	WebDriver driver;
 
-	@BeforeTest
+	@BeforeClass
 	public void beforeTest() {
-		// System.setProperty("webdriver.gecko.driver",
-		// "C:\\Program Files (x86)\\Mozilla Firefox\\geckodriver.exe");
+		/*
+		 * firefox作为浏览器启动 System.setProperty("webdriver.gecko.driver",
+		 * "C:\\Program Files (x86)\\Mozilla Firefox\\geckodriver.exe");
+		 */
+		// chrome作为浏览器启动
 		System.setProperty("webdriver.chrome.driver",
 				"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");
-	}
 
-	/*
-	 * @Parameters({"browser"})
-	 * 
-	 * @BeforeTest public void setupBrowser(String browser){ if
-	 * (browser.equals("firefox")){ driver = new FirefoxDriver(); } else {
-	 * driver = new ChromeDriver(); } }
-	 */
-
-	@Test
-	public void commitkeyword() {
 		// driver = new FirefoxDriver();
 		driver = new ChromeDriver();
 
 		driver.get("http://10.6.172.179:8080/pqms/pqms/page_login.html");
+	}
+
+	@Parameters("browser")
+	// @BeforeMethod
+	public void setupBrowser(String browser) {
+		if (browser.equals("firefox")) {
+			driver = new FirefoxDriver();
+		} else {
+			driver = new ChromeDriver();
+		}
+	}
+
+	@Test
+	public void commitkeyword() {
 
 		WebElement username = driver.findElement(By.id("username"));
 
@@ -52,7 +60,7 @@ public class pqms_test_demo {
 		button.click();
 	}
 
-	@AfterTest
+	@AfterClass
 	public void closed() {
 		// 关闭浏览器
 		driver.quit();

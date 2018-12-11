@@ -4,6 +4,7 @@
   <test name="Test">
     <classes>
       <class name="cjwsjy.pqmstest.pqms_test_demo"/>
+      <class name="cjwsjy.pqmstest.pqms_test_addproject"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
