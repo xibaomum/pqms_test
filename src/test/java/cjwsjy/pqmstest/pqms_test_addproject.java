@@ -59,7 +59,7 @@ public class pqms_test_addproject {
 	@DataProvider(name = "parameters")
 	public Object[][] para() {
 
-		return new Object[][] { { "23" } };
+		return new Object[][] { { "24" } };
 	}
 
 	@Test(dataProvider = "parameters")
